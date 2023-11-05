@@ -1,73 +1,97 @@
-/* rock, paper, scissors, lizard, spock:
-scissors cuts paper
-paper covers rock
-rock crushes lizard
-lizard poisons spock
-spock smashes scissors
-scissors decapitates lizard
-lizard eats paper
-paper disproves spock
-spock vaporizes rock
-and as it always has, rock crushes scissors
-*/
+
 
 let playerScore = 0;
 let computerScore = 0;
 
-function game(){
-    let randomNumber = Math.floor(Math.random() *3)+1;
-    const playerSelection = prompt("Rock, paper or scissors?",'');
-    const computerSelection = getComputerChoice(randomNumber);
-    console.log(`Computer's choice is: ${computerSelection}`);
-    playRound(playerSelection, computerSelection);
-    console.log(`Your score is: ${playerScore}. The computer's score is: ${computerScore}`);
-    console.log('');
+let playerOption = document.getElementsByTagName("img")
+    for (let i = 0; i < 3; i++){
+      playerOption[i].addEventListener('click', game, false);
+    }
 
-    function getComputerChoice(randomNumber){
-        if(randomNumber == 1){
-          return 'Paper';
-        }else if (randomNumber == 2){
-          return 'Rock';
+const newGame = document.getElementById('newGame');
+newGame.addEventListener('click', clearBoard);
+
+ function clearBoard(){
+  dialog.textContent = 'New game. New you';
+  playerScore = 0;
+  document.querySelector('.score-player').textContent = playerScore;
+  computerScore = 0;
+  document.querySelector('.score-PC').textContent = computerScore;
+ }
+
+const PCpaper = document.querySelector('#PCpaper');
+const PCrock = document.querySelector('#PCrock');
+const PCscissors = document.querySelector('#PCscissors');
+
+const dialog = document.querySelector('.dialog');
+
+function game(){
+    let randomChoice = Math.floor(Math.random() *3)+1;
+    
+    if(this.id == 'PLrock' && playerScore < 5 && computerScore < 5){
+      playerSelection = 'rock';
+    }else if(this.id == 'PLscissors' && playerScore < 5 && computerScore < 5){
+      playerSelection = 'scissors';
+    }else if (this.id == 'PLpaper' && playerScore < 5 && computerScore < 5){
+      playerSelection = 'paper';
+    }else{
+      return;
+    }
+    
+    const computerSelection = getComputerChoice(randomChoice);
+    playRound(playerSelection, computerSelection);
+
+    function getComputerChoice(randomChoice){ // return pictures visually
+        if(randomChoice == 1){
+          PCrock.classList.remove('stylingPC');
+          PCscissors.classList.remove('stylingPC');
+          PCpaper.classList.add('stylingPC');
+          return 'paper';
+        }else if (randomChoice == 2){
+          PCscissors.classList.remove('stylingPC');
+          PCpaper.classList.remove('stylingPC');
+          PCrock.classList.add('stylingPC');
+          return 'rock';
         }else{
-          return 'Scissors';
+          PCrock.classList.remove('stylingPC');
+          PCpaper.classList.remove('stylingPC');
+          PCscissors.classList.add('stylingPC');
+          return 'scissors';
         }
     }
+
 
     function playRound(playerSelection, computerSelection){
-        if (playerSelection.toLowerCase() == computerSelection.toLowerCase()){
-            console.log("That's a draw. No score for either");
+        if (playerSelection == computerSelection){
+            dialog.textContent = "Round draw! No score for either.";
 
-        }else if (playerSelection.toLowerCase() == 'rock' && computerSelection.toLowerCase() == 'paper' ||
-                  playerSelection.toLowerCase() == 'paper' && computerSelection.toLowerCase() == 'scissors' ||
-                  playerSelection.toLowerCase() == 'scissors' && computerSelection.toLowerCase() == 'rock'){
+        }else if (playerSelection == 'rock' && computerSelection == 'paper' ||
+                  playerSelection == 'paper' && computerSelection == 'scissors' ||
+                  playerSelection == 'scissors' && computerSelection == 'rock'){
             
-            computerScore += 1;
-            console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
-            
-        }else if (playerSelection.toLowerCase() == 'rock' && computerSelection.toLowerCase() == 'scissors' ||
-                  playerSelection.toLowerCase() == 'paper' && computerSelection.toLowerCase() == 'rock' ||
-                  playerSelection.toLowerCase() == 'scissors' && computerSelection.toLowerCase() == 'paper'){
-            
-            playerScore += 1;
-            console.log(`You win! ${playerSelection} beats ${computerSelection}`);
+            computerScore +=1
+            document.querySelector('.score-PC').textContent = computerScore;
+            dialog.textContent = `${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1).toLowerCase()} beats
+                                  ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase()}. You lose that one!`;
 
-        }else{
-            alert("This is a game of rock, paper, scissors");
-            console.log('');
-            game();
+        }else if (playerSelection == 'rock' && computerSelection == 'scissors' ||
+                  playerSelection == 'paper' && computerSelection == 'rock' ||
+                  playerSelection == 'scissors' && computerSelection == 'paper'){
+            
+            playerScore +=1
+            document.querySelector('.score-player').textContent = playerScore;
+            dialog.textContent = `${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase()} beats
+                                  ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1).toLowerCase()}. Round win!`;
         }
     }
-}
 
-game();
-game();
-game();
-game();
-game();
-if (playerScore > computerScore){
-    console.log("You are the winner of the match!");
-}else if (computerScore > playerScore){
-    console.log("You lost that one! Better luck next time");
-}else{
-    console.log("How did this happen? It's a draw");
+  if (playerScore < 5 && computerScore < 5){
+        newGame.disabled = true;
+  }else if (playerScore == 5){
+        dialog.textContent = 'Congratulations! You win! Hit the "New Game" button and see if you can get a hot streak';
+        newGame.disabled = false;
+  }else if (computerScore == 5){
+        dialog.textContent = 'Congratulations! Er, I mean. My condolences, you lost. Better luck next time';
+        newGame.disabled = false;
+  }
 }

@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    background-image: url(./images/background.jpg);
+    height: 100%;
+    background-size: 100% 105%;
+    background-repeat: no-repeat;
+}
+
+.dialog {
+    font-family: "Press Start 2p";
+    background-image: linear-gradient(rgb(15, 15, 185, 0.98), rgb(120, 120, 220, 0.9));
+    color: white;
+    text-shadow: -1px 1px 0 black, 1px 1px 0 black, 1px -1px 0 black, -1px -1px 0 black;
+    padding: 50px 20px;
+    height: 250px;
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: rgb(169, 196, 245);
+    padding: 20px 0px;
+    margin-bottom: 5px;
+    margin-top: 0px;
+    border-radius: 20px;
+}
+
+.scoreboard {
+    text-align: center;
+    font-size: 22px;
+    border-spacing: 50px;
+    height: 200px;
+    background-image: linear-gradient(rgb(131, 130, 130), rgba(224, 222, 222, 0.3));
+}
+
+td {
+    text-align: center;
+    font-size: 30px;
+    padding: 15px;
+    font-weight: 700;
+}
+
+.score-player{
+    background-color: rgba(151, 253, 119, 0.774);
+    width: 10%;
+}
+
+.score-PC{
+    background-color: rgb(255, 105, 125, 1);
+    width: 10%;
+}
+
+.field {
+    display: flex;
+    justify-content:space-around;
+    padding: 80px 20px;
+    border: 4px black solid;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.player-Side, .PC-side{
+    display: flex;
+    flex-direction: column;
+}
+
+.player-siderow1, .player-lastrow, .PC-row1, .PC-lastrow{
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    flex-wrap: wrap;
+}
+
+img {
+    padding: 5px 20px;
+}
+
+.player-siderow1 img:hover, .player-lastrow img:hover{
+    border: 4px solid red;
+    padding: 1px 16px;
+}
+
+#newGame {
+    font-family: "Press Start 2p";
+    height: 25px;
+    float: right;
+}
+
+.stylingPC {
+    border: 4px solid red;
+    padding: 1px 16px;
+}

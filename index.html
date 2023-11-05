@@ -4,9 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, Paper, Scissors!</title>
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    
+
+    <h1>Rock Paper Scissors</h1>
+
+    <table class="scoreboard">
+        <tr>
+            <th>Player's score</th>
+            <th>Computer's score</th>
+        </tr>
+        <tr>
+            <td class="score-player">0</td>
+            <td class="score-PC">0</td>
+        </tr>
+    </table>
+
+    <div class="field">
+        <div class="player-Side">
+            <div class="player-siderow1">
+                <img id="PLrock" src="/images/rock.png" height="70px"/>
+                <img id="PLpaper" src="/images/paper.png" height="70px"/>
+            </div>
+            <div class="player-lastrow">
+                <img id="PLscissors" src="/images/scissors.png" height="70px"/>
+            </div>
+        </div>
+        <div class="PC-side">
+            <div class="PC-row1">
+                <img id="PCrock" src="/images/rock.png" height="70px"/>
+                <img id="PCpaper" src="/images/paper.png" height="70px"/>
+            </div>
+            <div class="PC-lastrow">
+                <img id="PCscissors" src="/images/scissors.png" height="70px"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="dialog">
+        Round one! Err....Fight!?
+    </div>
+
+    <button id="newGame">New Game</button>
+    <script src="script.js"></script>
 </body>
 </html>
